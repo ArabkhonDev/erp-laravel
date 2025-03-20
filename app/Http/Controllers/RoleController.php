@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Floor;
-use App\Http\Requests\StoreFloorRequest;
-use App\Http\Requests\UpdateFloorRequest;
+use App\Models\Role;
+use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 
-class FloorController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $floors = Floor::all();
-        return view('floors.index', compact('floors'));
+        //
     }
 
     /**
@@ -28,7 +27,7 @@ class FloorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFloorRequest $request)
+    public function store(StoreRoleRequest $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class FloorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Floor $floor)
+    public function show(Role $role)
     {
         //
     }
@@ -44,7 +43,7 @@ class FloorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Floor $floor)
+    public function edit(Role $role)
     {
         //
     }
@@ -52,7 +51,7 @@ class FloorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFloorRequest $request, Floor $floor)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
         //
     }
@@ -60,7 +59,7 @@ class FloorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Floor $floor)
+    public function destroy(Role $role)
     {
         //
     }

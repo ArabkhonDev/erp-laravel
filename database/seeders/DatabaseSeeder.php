@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            RoleSeeder::class,
+            UserSeeder::class,
             StudentSeeder::class,
             TeacherSeeder::class,
             CourseSeeder::class,
@@ -21,7 +23,6 @@ class DatabaseSeeder extends Seeder
             FloorSeeder::class,
             RoomSeeder::class,
             LessonSeeder::class,
-            
         ]);
     }
 }

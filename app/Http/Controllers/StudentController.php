@@ -23,10 +23,14 @@ class StudentController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:students',
-            'phone' => 'nullable',
+            'phone' => 'required|numeric|min:9|max:12',
         ]);
 
-        Student::create($request->all());
+        Student::create([
+            'name'=> $request->name,
+            'email'=> $request->email,
+            'phone'=> $request->phone
+        ]);
 
         return redirect()->route('students.index')->with('success', 'Student added successfully.');
     }
@@ -46,9 +50,14 @@ class StudentController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:students,email,' . $student->id,
+            'phone'=> 'required|numeric|min:9|max:12',
         ]);
 
-        $student->update($request->all());
+        $student->update([
+            'name'=> $request->name,
+            'email'=> $request->email,
+            'phone'=> $request->phone
+        ]);
 
         return redirect()->route('students.index')->with('success', 'Student updated successfully.');
     }

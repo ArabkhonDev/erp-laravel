@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
     public function index()
-    {
-        $teachers = Teacher::all();
-        return view('teachers.index', compact('teachers'));
+    {   
+        $teachers = Teacher::orderBy('id', 'asc')->cursorPaginate(10);
+        return view('teachers.index')->with(['teacher'=> $teachers]);
     }
 
     public function create()
     {
-        return view('teachers.create');
+        $courses = Course::orderBy('id', 'asc')->get();
+
+        return view('teachers.create')->with(['courses'=> $courses ]);
     }
 
     public function store(Request $request)
@@ -26,7 +29,11 @@ class TeacherController extends Controller
             'phone' => 'nullable',
         ]);
 
-        Teacher::create($request->all());
+        Teacher::create([
+            'name'=> $request->name,
+            'email'=> $request->email,
+            'phone'=> $request->phone
+        ]);
 
         return redirect()->route('teachers.index')->with('success', 'Teacher added successfully.');
     }
@@ -46,9 +53,14 @@ class TeacherController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:students,email,' . $teacher->id,
+            'phone'=> 'required',
         ]);
 
-        $teacher->update($request->all());
+        $teacher->update([
+            'name'=> $request->name,
+            'email'=> $request->email,
+            'phone'=> $request->phone
+        ]);
 
         return redirect()->route('teachers.index')->with('success', 'Teacher updated successfully.');
     }
