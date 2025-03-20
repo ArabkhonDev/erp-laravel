@@ -15,7 +15,7 @@ class Group extends Model
 
     public function course()
     {
-        return $this->belongsToMany(Course::class);
+        return $this->belongsTo(Course::class);
     }
 
     public function teacher()
@@ -25,7 +25,7 @@ class Group extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'group_student')->limit(20);
+        return $this->hasMany(Student::class)->limit(20);
     }
 
     public function lessons(){

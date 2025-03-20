@@ -17,7 +17,8 @@ return new class extends Migration
             $table->decimal('amount', 10, 2);
             $table->string('payment_method'); // Stripe, Payme, etc.
             $table->string('transaction_id')->nullable();
-            $table->enum('status', ['pending', 'paid', 'failed'])->default('pending');
+            $table->date('month')->nullable();
+            $table->enum('status', [ 'paid', 'failed'])->default('failed');
             $table->timestamps();
         });
     }

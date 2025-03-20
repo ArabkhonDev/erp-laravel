@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->default('ingliz');
+            $table->string('title');
             $table->text('description')->nullable();
             $table->foreignId('teacher_id')->default(1)->constrained('teachers')->onDelete('cascade');
+            $table->date('start_month')->nullable();
             $table->timestamps();
         });
     }

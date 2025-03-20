@@ -10,10 +10,10 @@ class Student extends Model
     /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'phone', 'birth_date', 'address'];
+    protected $fillable = ['name', 'email', 'group_id',  'phone', 'birth_date', 'address'];
     public function groups()
     {
-        return $this->belongsToMany(Group::class, 'group_student');
+        return $this->belongsTo(Group::class);
     }
 
     public function grades(){
