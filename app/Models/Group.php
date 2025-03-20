@@ -11,11 +11,11 @@ class Group extends Model
     use HasFactory;
 
     
-    protected $fillable = ['name', 'course_id', 'teacher_id'];
+    protected $fillable = ['name', 'course_id', 'teacher_id', 'start_time', 'end_time'];
 
     public function course()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsToMany(Course::class);
     }
 
     public function teacher()

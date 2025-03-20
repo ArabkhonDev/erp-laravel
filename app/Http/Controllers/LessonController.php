@@ -10,7 +10,7 @@ class LessonController extends Controller
 {
     public function index()
     {
-        $lessons = Lesson::with('course')->get();
+        $lessons = Lesson::orderBy('id', 'asc')->paginate(10);
         return view('lessons.index', compact('lessons'));
     }
 

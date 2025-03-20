@@ -10,8 +10,8 @@ class TeacherController extends Controller
 {
     public function index()
     {   
-        $teachers = Teacher::orderBy('id', 'asc')->cursorPaginate(10);
-        return view('teachers.index')->with(['teacher'=> $teachers]);
+        $teachers = Teacher::orderBy('id', 'asc')->cursorPaginate(8);
+        return view('teachers.index')->with(['teachers'=> $teachers]);
     }
 
     public function create()

@@ -10,7 +10,7 @@ class GroupController extends Controller
 {
     public function index()
     {
-        $groups = Group::with('course')->get();
+        $groups = Group::orderBy('id', 'asc')->cursorPaginate(10);
         return view('groups.index', compact('groups'));
     }
 

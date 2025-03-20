@@ -18,7 +18,7 @@ class TeacherFactory extends Factory
     {
         return [
             'name'=> $this->faker->name,
-            'email'=> $this->faker->name . "@gmail.com", 
+            'email'=> $this->faker->name . "@gmail.com",
         ];
     }
 }

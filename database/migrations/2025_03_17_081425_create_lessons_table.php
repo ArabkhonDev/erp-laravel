@@ -15,13 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->foreignId('group_id')->constrained('groups')->onDelete('cascade');
-            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
-            $table->foreignId('room_id')->nullable()->constrained()->onDelete('set null'); // Dars xonasi
             $table->string('video_path')->nullable();
             $table->string('document_path')->nullable();
-            $table->date('date')->nullable();
-            $table->time('time')->nullable();
             $table->timestamps();
         });
     }

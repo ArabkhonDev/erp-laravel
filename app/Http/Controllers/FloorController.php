@@ -13,7 +13,7 @@ class FloorController extends Controller
      */
     public function index()
     {
-        $floors = Floor::all();
+        $floors = Floor::orderBy('id', 'asc')->paginate(10);
         return view('floors.index', compact('floors'));
     }
 

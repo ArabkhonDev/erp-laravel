@@ -19,7 +19,7 @@ class RoomSeeder extends Seeder
         foreach ($floors as $floor) {
             foreach (range(1, 5) as $i) {
                 Room::create([
-                    'name' => $floor->name . " - " . $i . '-xona',
+                    'name' => $i . '-xona',
                     'floor_id' => $floor->id
                 ]);
             }

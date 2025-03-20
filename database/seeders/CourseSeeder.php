@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Course;
+use App\Models\Group;
+use App\Models\Teacher;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,9 +15,20 @@ class CourseSeeder extends Seeder
      */
     public function run(): void
     {
-        $course = Course::create(['title' => 'Backend Development', 'teacher_id'=> 1]);
-        $course = Course::create(['title' => 'Frontend Development', 'teacher_id'=> 1]);
-        $course = Course::create(['title' => 'Game Development', 'teacher_id'=> 1]);
-        $course = Course::create(['title' => 'Graphic Designer', 'teacher_id'=> 1]);
+        $courses = ['Backend Development', 'Frontend Development', 'Game Development', 'Graphic Designer'];
+        $teachers = Teacher::all();
+            foreach ($courses as $course) {
+                Course::create([
+                    'title' => $course,
+                    'teacher_id' => rand(1, 10),
+                ]);
+            }
+
+        foreach ($courses as $course) {
+            Course::factory(2)->create()->each(function ($course) {
+                $groups = Group::inRandomOrder()->limit(12)->pluck('id');
+                $course->students()->attach($groups);
+            });
+        }
     }
 }

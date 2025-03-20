@@ -12,6 +12,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -27,11 +29,58 @@
                     </div>
                 </header>
             @endisset
-
-            <!-- Page Content -->
-            <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-2">
-                {{ $slot }}
-            </main>
+<div class="flex">
+    <aside class="bg-aqua-800 text-white w-64 min-h-screen p-4">
+        <div class="">
+            <!-- Logo -->
+            <!-- Navigation Links -->
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                    {{ __('Yangiliklar') }}
+                </x-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('teachers.index')" :active="request()->routeIs('teachers.index')">
+                    {{ __('Teachers') }}
+                </x-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
+                    {{ __('Students') }}
+                </x-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('rooms.index')" :active="request()->routeIs('rooms.index')">
+                    {{ __('Rooms') }}
+                </x-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('floors.index')" :active="request()->routeIs('floors.index')">
+                    {{ __('Floors') }}
+                </x-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('groups.index')" :active="request()->routeIs('groups.index')">
+                    {{ __('Groups') }}
+                </x-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('lessons.index')" :active="request()->routeIs('lessons.index')">
+                    {{ __('Lessons') }}
+                </x-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">
+                    {{ __('Kurslar') }}
+                </x-nav-link>
+            </div>
+        </div>
+    </aside>
+    <!-- Page Content -->
+    <main class="w-full mx-auto px-4 sm:px-6 lg:px-8 my-2">
+        {{ $slot }}
+    </main>
+</div>
         </div>
     </body>
 </html>
