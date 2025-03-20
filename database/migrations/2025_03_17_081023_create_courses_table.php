@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->foreignId('teacher_id')->default(1)->constrained('teachers')->onDelete('cascade');
-            $table->date('start_month')->nullable();
             $table->timestamps();
         });
     }

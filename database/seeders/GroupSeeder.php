@@ -19,7 +19,7 @@ class GroupSeeder extends Seeder
         $courses = Course::all();
 
         foreach ($courses as $course) {
-            for ($i = 1; $i <= 3; $i++) {
+            for ($i = 1; $i <= 5; $i++) {
                 Group::create([
                     'name' => $course->name . " Group " . $i,
                     'teacher_id' => $teacher->id,

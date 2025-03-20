@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('course_id')->nullable()->constrained()->onDelete('set null');
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
+            $table->date('start_month')->nullable();
             $table->timestamps();
         });
     }

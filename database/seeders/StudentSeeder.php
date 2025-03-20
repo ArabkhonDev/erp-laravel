@@ -16,14 +16,13 @@ class StudentSeeder extends Seeder
     {
        $groups = Group::all();
 
-       foreach ($groups as $group) {
            for ($i = 1; $i <= 15; $i++) {
                Student::create([
-                   'name' => 'Student ' . $i . ' (' . $group->name . ')',
+                   'name' => fake()->firstName() . " " . fake()->lastName(),
                    'email'=>fake()->email,
-                   'group_id' => $group->id,
+                   'group_id' => rand(1, 5),
                ]);
            }
        }
-    }
+    
 }

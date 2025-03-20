@@ -4,10 +4,10 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Name</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Kursi</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Status</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Student Count</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Kursi</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Teacher Name</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Student Count</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Edit</th>
                 </tr>
             </thead>
@@ -24,9 +24,9 @@
                                 O'qiyabdi
                             </span>
                         </td>
+                        <td class="px-6 py-4">{{$group->course->title}}</td>
                         <td class="px-6 py-4">{{$group->teacher->name}}</td>
                         <td class="px-6 py-4">{{count($group->students)}}</td>
-                        <td class="px-6 py-4">{{$group->course->title}}</td>
                         <td class="px-6 py-4">
                             <div class="flex justify-end gap-4">
                                 <a x-data="{ tooltip: 'Edite' }" href="{{route('grades.edit', $group->id)}}">

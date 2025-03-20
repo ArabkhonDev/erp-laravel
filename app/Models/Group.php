@@ -11,7 +11,7 @@ class Group extends Model
     use HasFactory;
 
     
-    protected $fillable = ['name', 'course_id', 'teacher_id', 'start_time', 'end_time'];
+    protected $fillable = ['name', 'course_id', 'teacher_id', 'start_time', 'end_time', 'start_month'];
 
     public function course()
     {
