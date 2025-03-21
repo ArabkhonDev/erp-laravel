@@ -15,6 +15,11 @@ use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainControler::class, 'index'])->name('home');
+Route::get('/news', [MainControler::class,'news'])->name('news');
+Route::get('/news/{new}', [MainControler::class,'newsShow'])->name('news.show');
+Route::get('/courses', [MainControler::class,'courseIndex'])->name('kurslar.index');
+Route::get('/courses/{course}', [MainControler::class,'courseShow'])->name('kurslar.show');
+Route::get('contact', [MainControler::class, 'contact'])->name('contact');
 
 
 Route::middleware(['auth', 'verified'])->get('/dashboard', [MainControler::class, 'dashboard'])->name('dashboard');
