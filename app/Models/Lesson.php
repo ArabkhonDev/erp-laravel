@@ -18,6 +18,6 @@ class Lesson extends Model
     }
 
     public function group(){
-        return $this->belongsToMany(Group::class);
+        return $this->belongsTo(Group::class);
     }
 }

@@ -15,4 +15,8 @@ class Post extends Model
         'content',
         'image',
     ] ;
+
+    public function views(){
+        return $this->hasMany(PostView::class);
+    }
 }

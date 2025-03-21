@@ -29,7 +29,7 @@ class Group extends Model
     }
 
     public function lessons(){
-        return $this->belongsToMany(Lesson::class,);
+        return $this->hasMany(Lesson::class,);
     }
     public function schedules(){
         return $this->belongsToMany(Schedule::class);

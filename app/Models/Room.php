@@ -17,8 +17,4 @@ class Room extends Model
         return $this->belongsTo(Floor::class);
     }
 
-    public function lessons()
-    {
-        return $this->hasMany(Lesson::class);
-    }
 }

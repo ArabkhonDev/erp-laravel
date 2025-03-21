@@ -15,7 +15,13 @@ class Teacher extends Model
     {
         return $this->hasMany(Group::class);
     }
-    public function schedules(){
+    public function schedules()
+    {
         return $this->belongsToMany(Schedule::class);
+    }
+
+    public function postViews()
+    {
+        return $this->morphMany(PostView::class, 'viewer');
     }
 }

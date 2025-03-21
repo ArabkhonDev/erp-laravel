@@ -16,11 +16,18 @@ class Student extends Model
         return $this->belongsTo(Group::class);
     }
 
-    public function grades(){
+    public function grades()
+    {
         return $this->belongsToMany(Grade::class);
     }
 
-    public function payments(){
+    public function payments()
+    {
         return $this->hasMany(Payment::class);
+    }
+
+    public function postViews()
+    {
+        return $this->morphMany(PostView::class, 'viewer');
     }
 }
