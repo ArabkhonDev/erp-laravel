@@ -24,5 +24,6 @@
         </div>
     @endforeach
     {{ $posts->links() }}
+    salom
 
 </x-app-layout>

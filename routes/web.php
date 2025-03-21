@@ -19,7 +19,7 @@ Route::get('/', [MainControler::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])->get('/dashboard', [MainControler::class, 'dashboard'])->name('dashboard');
 
-Route::prefix('admin')->group(function () {
+Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::resources([
         'students' => StudentController::class,

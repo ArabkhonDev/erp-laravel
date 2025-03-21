@@ -30,6 +30,7 @@ class Course extends Model
     {
         return $this->hasMany(Group::class);
     }
+    
     public function schedules(){
         return $this->belongsToMany(Schedule::class);
     }
