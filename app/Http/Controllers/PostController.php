@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\PostView;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -16,7 +17,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy("created_at", "desc")->cursorPaginate(3);
+
+        $posts = Cache::remember('all_posts', 3600, function () {
+            Post::orderBy("created_at", "desc")->cursorPaginate(3);
+        });
+
         return view('posts.index', compact('posts'));
     }
 
@@ -33,7 +38,20 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $post = Post::create([
+            'title' => $request->title,
+            'shorrt_content' => $request->content,
+            'content' => $request->content,
+            'image' => $request->image ?? null,
+        ]);
+
+        // Yangi postni cache-ga qo‘shamiz
+        Cache::forget('all_posts');
+        Cache::remember('all_posts', 3600, function () {
+            return Post::all();
+        });
+
+        return redirect()->route('posts.index')->with('success', 'muvafaqiyatli yaratildi');
     }
 
     /**
@@ -57,6 +75,10 @@ class PostController extends Controller
         $studentViews = PostView::where('post_id', $post->id)
             ->where('viewer_type', 'student')
             ->count();
+        $post = Cache::remember("post_{$post}", 3600, function () use ($post) {
+            return Post::findOrFail($post);
+        });
+
         return view('posts.show', compact('post', 'statistics', 'dailyViews', 'teacherViews', 'studentViews'));
     }
 
@@ -65,23 +87,47 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->update([
+            'title' => $request->title,
+            'shorrt_content' => $request->content,
+            'content' => $request->content,
+            'image' => $request->image ?? null,
+        ]);
+
+        // Yangi postni cache-ga qo‘shamiz
+        Cache::forget("post_{$id}");
+        Cache::forget('all_posts');
+        Cache::remember("post_{$id}", 3600, function () use ($id) {
+            return Post::findOrFail($id);
+        });
+        Cache::remember('all_posts', 3600, function () {
+            return Post::all();
+        });
+
+        return redirect()->route('posts.index')->with('success', 'muvafaqiyatli yaratildi');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
+        $post = Post::findOrFail($id);
         $post->delete();
-        return redirect()->route('posts.index')->with('success',"Muvaffaqiyatli o'chirildi");
+
+        // Cache-ni o‘chiramiz
+        Cache::forget("post_{$id}");
+        Cache::forget('all_posts');
+
+        return redirect()->route('posts.index')->with('success', "Muvaffaqiyatli o'chirildi");
     }
 }

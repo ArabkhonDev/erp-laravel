@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
             $table->decimal('amount', 10, 2);
-            $table->string('payment_method'); // Stripe, Payme, etc.
+            $table->string('payment_method')->nullable(); // Stripe, Payme, etc.
             $table->string('transaction_id')->nullable();
             $table->date('month')->nullable();
+            $table->date('paid_at')->nullable();
             $table->enum('status', [ 'paid', 'failed'])->default('failed');
             $table->timestamps();
         });

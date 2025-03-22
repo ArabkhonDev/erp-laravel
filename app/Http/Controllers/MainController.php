@@ -6,7 +6,7 @@ use App\Models\Course;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class MainControler extends Controller
+class MainController extends Controller
 {
     public function index(){
         return view("welcome");
@@ -27,6 +27,7 @@ class MainControler extends Controller
     }
 
     public function courseShow(Course $course){
+        dd($course);
         return view('pages.kurslar.show', compact('course'));
     }
 
@@ -36,6 +37,7 @@ class MainControler extends Controller
     }
 
     public function newsShow(Post $post){
+        dd($post);
         return view('pages.posts.show', compact('post'));
     }
 

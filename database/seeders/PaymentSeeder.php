@@ -16,7 +16,7 @@ class PaymentSeeder extends Seeder
     public function run(): void
     {
         $students = Student::all();
-        $months = ['2024-01', '2024-02', '2024-03'];
+        $months = ['2025-01', '2025-02', '2025-03'];
 
         foreach ($students as $student) {
             foreach ($months as $month) {
@@ -25,9 +25,9 @@ class PaymentSeeder extends Seeder
                 if ($hasPaid) {
                     Payment::create([
                         'student_id' => $student->id,
-                        'month' => $month,
+                        'month' => $month . "-01",
                         'amount' => 500000, // O‘rtacha summa
-                        'paid_at' => Carbon::parse($month . '-05'),
+                        'paid_at' => Carbon::parse(  $month .'-05' ),
                     ]);
                 }
             }
