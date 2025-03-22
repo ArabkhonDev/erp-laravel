@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FloorController;
 use App\Http\Controllers\GradeController;
@@ -24,24 +25,33 @@ Route::get('contact', [MainController::class, 'contact'])->name('contact');
 
 Route::middleware(['auth', 'verified'])->get('/dashboard', [MainController::class, 'dashboard'])->name('dashboard');
 
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {
 
-    Route::resources([
-        'students' => StudentController::class,
-        'teachers' => TeacherController::class,
-        'groups' => GroupController::class,
-        'courses' => CourseController::class,
-        'lessons' => LessonController::class,
-        'grades' => GradeController::class,
-        'payments' => PaymentController::class,
-        'rooms' => RoomController::class,
-        'floors' => FloorController::class,
-        'posts' => PostController::class,
-    ]);
-    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-    Route::get('/reports/students', [ReportController::class, 'studentsReport']);
-    Route::get('/reports/courses', [ReportController::class, 'coursesReport']);
-    Route::get('/reports/payments', [ReportController::class, 'paymentsReport']);
+    Route::middleware('auth')->group(function () {
+
+        Route::resources([
+            'students' => StudentController::class,
+            'teachers' => TeacherController::class,
+            'groups' => GroupController::class,
+            'courses' => CourseController::class,
+            'lessons' => LessonController::class,
+            'grades' => GradeController::class,
+            'payments' => PaymentController::class,
+            'rooms' => RoomController::class,
+            'floors' => FloorController::class,
+            'posts' => PostController::class,
+        ]);
+        Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+        Route::get('/reports/students', [ReportController::class, 'studentsReport']);
+        Route::get('/reports/courses', [ReportController::class, 'coursesReport']);
+        Route::get('/reports/payments', [ReportController::class, 'paymentsReport']);
+        
+    });
+    
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])
+        ->name('login');
+
+    Route::post('login', [AuthenticatedSessionController::class, 'store']);
 });
 
 require __DIR__ . '/auth.php';

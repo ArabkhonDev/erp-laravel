@@ -18,9 +18,11 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Cache::remember('all_posts', 3600, function () {
-            Post::orderBy("created_at", "desc")->cursorPaginate(3);
+        $posts = Cache::remember('all_posts', 60, function () {
+            return Post::orderBy("created_at", "asc")->cursorPaginate(3);
         });
+
+        // dd($posts);
 
         return view('posts.index', compact('posts'));
     }
@@ -57,8 +59,10 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($id)
     {
+        $post = Post::findOrFail($id);
+        // dd($post);
         $statistics = PostView::where('post_id', $post->id)
             ->orderBy('viewed_at', 'desc')
             ->get();
@@ -75,11 +79,11 @@ class PostController extends Controller
         $studentViews = PostView::where('post_id', $post->id)
             ->where('viewer_type', 'student')
             ->count();
-        $post = Cache::remember("post_{$post}", 3600, function () use ($post) {
-            return Post::findOrFail($post);
+        $post = Cache::remember("post_{$id}", 3600, function () use ($id) {
+            return Post::findOrFail($id);
         });
 
-        return view('posts.show', compact('post', 'statistics', 'dailyViews', 'teacherViews', 'studentViews'));
+        return view('posts.show')->with(['post' => $post]);
     }
 
     /**

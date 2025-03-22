@@ -26,7 +26,8 @@ class MainController extends Controller
         return view('pages.kurslar.index', compact('courses'));
     }
 
-    public function courseShow(Course $course){
+    public function courseShow($id){
+        $course = Course::find($id);
         dd($course);
         return view('pages.kurslar.show', compact('course'));
     }
@@ -36,8 +37,8 @@ class MainController extends Controller
         return view('pages.posts.index', compact('posts'));
     }
 
-    public function newsShow(Post $post){
-        dd($post);
+    public function newsShow($id){
+        $post = Post::find($id);
         return view('pages.posts.show', compact('post'));
     }
 

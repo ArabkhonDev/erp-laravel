@@ -31,7 +31,7 @@
                             </div>
                             <div class="p-6 pt-0">
                                 <button type="submit" class="rounded bg-gray-200 py-2 px-4">
-                                    <a href="{{ route('news.show', $post->id) }}">Read More</a>
+                                    <a href="{{ route('news.show', ['id', $post->id]) }}">Read More</a>
                                 </button>
                             </div>
                         </div>

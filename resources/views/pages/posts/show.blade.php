@@ -6,7 +6,7 @@
             <!-- Product Image -->
             <div class="md:w-1/3 p-4 relative">
                 <div class=" ">
-                    <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-lg"
+                    <img src="{{ $post->image ?? null }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-lg"
                         width="500px" height="250px" />
                     <button class="absolute top-2 right-2 text-red-500 hover:text-red-600 focus:outline-none">
                         <svg class="w-6 h-6 absolute top-0 right-2" fill="none" stroke="currentColor"

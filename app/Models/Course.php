@@ -10,7 +10,7 @@ class Course extends Model
     /** @use HasFactory<\Database\Factories\CourseFactory> */
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'teacher_id',];
+    protected $fillable = ['title', 'description', 'image', 'teacher_id',];
 
     public function teacher()
     {

@@ -7,7 +7,7 @@
                     <img class="h-48 w-full object-cover md:w-48" src="https://via.placeholder.com/300x200" alt="Image">
                 </div>
                 <div class="p-8">
-                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Case Study</div>
+                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold"><a href="{{ route('posts.show', ['id', $post->id]) }}">Case Study</a></div>
                     <a href="#"
                         class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Finding customers
                         for your new business</a>
@@ -16,7 +16,7 @@
                     <div class="mt-4">
                         <button
                             class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 focus:outline-none"><a
-                                href="{{ route('posts.show', $post->id) }}">Read
+                                href="{{ route('posts.show', ['id', $post->id]) }}">Read
                                 More</a></button>
                     </div>
                 </div>
