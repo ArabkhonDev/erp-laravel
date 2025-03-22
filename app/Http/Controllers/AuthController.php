@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AuthController extends Controller
 {
@@ -41,6 +42,16 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+            $key = 'login_attempts:'.$request->ip();
+    
+            if (RateLimiter::tooManyAttempts($key, 5)) { // 5 martadan ko‘p bo‘lsa
+                return response()->json([
+                    'message' => 'Juda ko‘p urinish! 1 daqiqa kuting.'
+                ], 429);
+            }
+    
+            RateLimiter::hit($key, 60); 
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',

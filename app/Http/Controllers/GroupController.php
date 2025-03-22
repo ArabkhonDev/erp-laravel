@@ -13,7 +13,7 @@ class GroupController extends Controller
     public function index()
     {
         $groups = Cache::remember('all_groups', 3600, function () {
-           return Group::orderBy('id', 'asc')->cursorPaginate(10);
+           return Group::orderBy('id', 'asc')->with('student')->cursorPaginate(10);
         });
         return view('groups.index', compact('groups'));
     }

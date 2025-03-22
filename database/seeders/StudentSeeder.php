@@ -16,7 +16,7 @@ class StudentSeeder extends Seeder
     {
        $groups = Group::all();
 
-           for ($i = 1; $i <= 15; $i++) {
+           for ($i = 1; $i <= 200; $i++) {
                Student::create([
                    'name' => fake()->firstName() . " " . fake()->lastName(),
                    'email'=>fake()->email,
