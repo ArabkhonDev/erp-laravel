@@ -15,7 +15,7 @@
                         class="mb-4">
                         <div class="grid gap-2">
                             <div class="grid gap-1">
-                                <label class="text-zinc-950 dark:text-white" for="fname">Full name</label>
+                                <label class="text-zinc-950 dark:text-white" for="fname" value='{{$teacher->name}}'>Full name</label>
                                 <input
                                     class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium text-zinc-950 placeholder:text-zinc-400 focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-zinc-400"
                                     id="fname" placeholder="Enter teacher full name" type="text"

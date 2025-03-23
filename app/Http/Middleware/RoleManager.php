@@ -11,38 +11,39 @@ class RoleManager
 {
     public function handle(Request $request, Closure $next, $role): Response
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-        $authUserRole = Auth::user()->role;
+        // if (!Auth::check()) {
+        //     return redirect()->route('login');
+        // }
+        // $authUserRole = Auth::user()->role;
 
-        switch ($role) {
-            case 'admin':
-                if ($authUserRole == 0) {
-                    return $next($request);
-                }
-                break;
+        // switch ($role) {
+        //     case 'admin':
+        //         if ($authUserRole == 0) {
+        //             return $next($request);
+        //         }
+        //         break;
 
-            case 'teacher':
-                if ($authUserRole == 1) {
-                    return $next($request);
-                }
-                break;
+        //     case 'teacher':
+        //         if ($authUserRole == 1) {
+        //             return $next($request);
+        //         }
+        //         break;
 
-            case 'user':
-                if ($authUserRole == 2) {
-                    return $next($request);
-                }
-                break;
-        }
-        switch($authUserRole){
-            case 0:
-                return redirect()->route('admin');
-            case 1:
-                return redirect()->route('teacher');
-            case 2:
-                return redirect()->route('user');
-        }
+        //     case 'user':
+        //         if ($authUserRole == 2) {
+        //             return $next($request);
+        //         }
+        //         break;
+        // }
+        // switch($authUserRole){
+        //     case 0:
+        //         return redirect()->route('admin');
+        //     case 1:
+        //         return redirect()->route('teacher');
+        //     case 2:
+        //         return redirect()->route('user');
+        // }
+        echo "salom";
         return redirect()->route('login');
     }
 }

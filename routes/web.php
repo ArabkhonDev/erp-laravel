@@ -48,10 +48,9 @@ Route::prefix('admin')->group(function () {
         
     });
     
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login');
-
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    
 });
+Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
 require __DIR__ . '/auth.php';
