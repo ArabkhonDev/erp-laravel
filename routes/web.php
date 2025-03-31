@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FloorController;
 use App\Http\Controllers\GradeController;
@@ -9,7 +8,6 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -23,7 +21,7 @@ Route::get('/courses/{course}', [MainController::class,'courseShow'])->name('kur
 Route::get('contact', [MainController::class, 'contact'])->name('contact');
 
 
-Route::middleware(['auth', 'verified'])->get('/dashboard', [MainController::class, 'dashboard'])->name('dashboard');
+Route::middleware(['auth'])->get('/dashboard', [MainController::class, 'dashboard'])->name('dashboard');
 
 Route::prefix('admin')->group(function () {
 
@@ -41,16 +39,8 @@ Route::prefix('admin')->group(function () {
             'floors' => FloorController::class,
             'posts' => PostController::class,
         ]);
-        Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-        Route::get('/reports/students', [ReportController::class, 'studentsReport']);
-        Route::get('/reports/courses', [ReportController::class, 'coursesReport']);
-        Route::get('/reports/payments', [ReportController::class, 'paymentsReport']);
-        
     });
-    
-    
 });
-Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
-Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
 
 require __DIR__ . '/auth.php';
