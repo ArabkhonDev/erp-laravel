@@ -6,14 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
             $table->text('description')->nullable();
             $table->string('video_path')->nullable();
             $table->string('document_path')->nullable();
@@ -21,9 +20,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('lessons');
