@@ -9,4 +9,15 @@ class Task extends Model
 {
     /** @use HasFactory<\Database\Factories\TaskFactory> */
     use HasFactory;
+    protected $fillable = [
+        'desc', 'task', 'lesson_id', 'student_id'
+    ] ;
+
+    public function lesson(){
+        return $this->belongsTo(Lesson::class);
+    }
+
+    public function student(){
+        return $this->belongsTo(Student::class);
+    }
 }

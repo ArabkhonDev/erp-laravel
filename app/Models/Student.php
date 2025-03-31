@@ -30,4 +30,8 @@ class Student extends Model
     {
         return $this->morphMany(PostView::class, 'viewer');
     }
+
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 }

@@ -20,4 +20,8 @@ class Lesson extends Model
     public function group(){
         return $this->belongsTo(Group::class);
     }
+    
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 }
