@@ -19,13 +19,11 @@ class PostView extends Model
 
     public $timestamps = true;
 
-    // Post bilan bog'lanish
     public function post()
     {
         return $this->belongsTo(Post::class);
     }
 
-    // Viewer (ko‘ruvchi) bilan polymorphic bog‘lanish
     public function viewer()
     {
         return $this->morphTo(__FUNCTION__, 'viewer_type', 'viewer_id');

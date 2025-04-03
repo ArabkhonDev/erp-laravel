@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
-    /** @use HasFactory<\Database\Factories\TeacherFactory> */
     use HasFactory;
     protected $fillable = ['name', 'email', 'phone', 'subject', 'birth_date', 'address'];
 
@@ -15,11 +14,6 @@ class Teacher extends Model
     {
         return $this->hasMany(Group::class);
     }
-    public function schedules()
-    {
-        return $this->belongsToMany(Schedule::class);
-    }
-
     public function postViews()
     {
         return $this->morphMany(PostView::class, 'viewer');

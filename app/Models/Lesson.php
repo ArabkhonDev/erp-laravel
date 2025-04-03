@@ -10,7 +10,7 @@ class Lesson extends Model
     /** @use HasFactory<\Database\Factories\LessonFactory> */
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'video_path', 'document_path',];
+    protected $fillable = ['title', 'group_id', 'description', 'video_path', 'document_path',];
 
     public function grades()
     {

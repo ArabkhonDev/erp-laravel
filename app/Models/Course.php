@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    /** @use HasFactory<\Database\Factories\CourseFactory> */
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'image', 'teacher_id',];
@@ -29,9 +28,5 @@ class Course extends Model
     public function groups()
     {
         return $this->hasMany(Group::class);
-    }
-    
-    public function schedules(){
-        return $this->belongsToMany(Schedule::class);
     }
 }

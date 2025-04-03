@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    /** @use HasFactory<\Database\Factories\RoomFactory> */
     use HasFactory;
-
     protected $fillable = ['name', 'floor_id'];
 
     public function floor()
