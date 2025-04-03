@@ -16,11 +16,11 @@ class StudentSeeder extends Seeder
     {
        $groups = Group::all();
 
-           for ($i = 1; $i <= 200; $i++) {
+           for ($i = 1; $i <= 2000; $i++) {
                Student::create([
                    'name' => fake()->firstName() . " " . fake()->lastName(),
                    'email'=>fake()->email,
-                   'group_id' => rand(1, 5),
+                   'group_id' => rand(1, 10),
                ]);
            }
        }

@@ -15,6 +15,7 @@ class LessonFactory extends Factory
     {
         return [
             'title' => 'Lesson ' . $this->faker->unique()->numberBetween(1, 100),
+            'group_id'=>rand(1,10),
             'description' => $this->faker->sentence(),
         ];
     }

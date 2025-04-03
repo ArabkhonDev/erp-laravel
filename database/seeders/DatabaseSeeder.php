@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             CourseSeeder::class,
             GroupSeeder::class,
             StudentSeeder::class,
-            PaymentSeeder::class,
+            // PaymentSeeder::class,
             FloorSeeder::class,
             RoomSeeder::class,
             LessonSeeder::class,
