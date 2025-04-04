@@ -17,7 +17,6 @@ class CourseSeeder extends Seeder
         foreach ($courses as $course) {
             Course::create([
                 'title' => $course,
-                'teacher_id' => rand(1, 3),
             ]);
         }
     }

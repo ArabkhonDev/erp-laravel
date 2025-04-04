@@ -13,16 +13,16 @@ class GroupController extends Controller
     public function index()
     {
         $groups = Cache::remember('all_groups', 3600, function () {
-           return Group::orderBy('id', 'asc')->with('student')->cursorPaginate(10);
+           return Group::orderBy('id', 'asc')->cursorPaginate(10);
         });
-        // return view('groups.index', compact('groups'));
-        return response()->json($groups);
+        return view('groups.index', compact('groups'));
+        // return response()->json($groups);
     }
 
     public function create()
     {
-        $courses = Course::all();
-        $teachers = Teacher::all();
+        $courses = Course::select('name')->get();
+        $teachers = Teacher::select('name')->get();
         return view('groups.create', compact('courses', 'teachers'));
     }
 

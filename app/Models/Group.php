@@ -31,7 +31,4 @@ class Group extends Model
     public function lessons(){
         return $this->hasMany(Lesson::class,);
     }
-    public function schedules(){
-        return $this->belongsToMany(Schedule::class);
-    }
 }

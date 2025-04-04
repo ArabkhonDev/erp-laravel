@@ -5,7 +5,7 @@
                 <tr>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Name</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">State</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Teacher name</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Teacher Count</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Group Count</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Student Count</th>
                 </tr>
@@ -24,7 +24,8 @@
                             Active
                         </span>
                     </td>
-                    <td class="px-6 py-4">{{$course->teacher->name}}</td>
+                    <td class="px-6 py-4">{{count($course->teachers)}}</td>
+                    <td class="px-6 py-4">{{count($course->groups)}}</td>
                     <td class="px-6 py-4">{{count($course->students)}}</td>
                     <td class="px-6 py-4">
                         <div class="flex justify-end gap-4">

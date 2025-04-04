@@ -12,6 +12,7 @@ class TeacherFactory extends Factory
         return [
             'name'=> $this->faker->name,
             'email'=> $this->faker->name . "@gmail.com",
+            'course_id'=>rand(1,4),
         ];
     }
 }

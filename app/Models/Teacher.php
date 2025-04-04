@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Teacher extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'email', 'phone', 'subject', 'birth_date', 'address'];
+    protected $fillable = ['name', 'email', 'phone', 'subject', 'birth_date', 'address', 'course_id'];
 
     public function groups()
     {
@@ -17,5 +17,9 @@ class Teacher extends Model
     public function postViews()
     {
         return $this->morphMany(PostView::class, 'viewer');
+    }
+
+    public function course(){
+        return $this->belongsTo(Course::class);
     }
 }

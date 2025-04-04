@@ -9,11 +9,11 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'image', 'teacher_id',];
+    protected $fillable = ['title', 'description', 'image',];
 
-    public function teacher()
+    public function teachers()
     {
-        return $this->belongsTo(Teacher::class);
+        return $this->hasMany(Teacher::class);
     }
 
     public function lessons(){

@@ -10,7 +10,7 @@
             </div>
 
             <!-- Product Details -->
-            <div class="md:w-2/3 p-6">
+            <div class=" p-6">
                 <h1 class="text-2xl font-bold text-gray-800 mb-2">Kurs nomi: {{ $group->course->title }}</h1>
                 <p class="text-sm text-gray-600 mb-4">Boshlagan sana: {{ $group->start_month }}</p>
 
@@ -18,25 +18,43 @@
                     <span class="text-sm text-gray-500 ml-2"> Gruppa studentlar soni:
                         <strong>{{ count($group->students) }}</strong></span>
                 </div>
-                <table class="w-full justify-around">
-                    <thead>
-                        <h2>Gurux talabalarini malumotlari</h2>
-                        <tr>
-                            <th>ID nomeri</th>
-                            <th>Ismi</th>
-                            <th>Tel nomeri</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($group->students as $student)
+                <div class=" wrap">
+                    <table class="w-full justify-around">
+                        <thead>
+                            <h2>Gurux talabalarini malumotlari</h2>
                             <tr>
-                                <td>{{ $student->id }}</td>
-                                <td><a href="{{route('students.show', ['id', $student->id])}}">{{ $student->name }}</a></td>
-                                <td><a href="tel:{{ $student->phone }}"></a>{{ $student->phone }}</td>
+                                <th>ID nomeri</th>
+                                <th>Ismi</th>
+                                <th>Tel nomeri</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($group->students as $student)
+                                <tr>
+                                    <td>{{ $student->id }}</td>
+                                    <td><a
+                                            href="{{ route('students.show', ['id', $student->id]) }}">{{ $student->name }}</a>
+                                    </td>
+                                    <td><a href="tel:{{ $student->phone }}"></a>{{ $student->phone }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <table class="w-full justify-around">
+                        <thead>
+                            <tr>
+                                <th>Darslar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($group->lessons as $lesson)
+                                <tr>
+                                    <td>{{ $lesson->title }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
                 <ul class="text-sm text-gray-700 mb-6">
                     <li class="flex items-center mb-1">Grupani O'qtuvchi ismi: {{ $group->teacher->name }}</li>

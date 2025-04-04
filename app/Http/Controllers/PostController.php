@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
 
@@ -22,22 +19,12 @@ class PostController extends Controller
             return Post::orderBy("created_at", "asc")->cursorPaginate(3);
         });
 
-        // dd($posts);
-
         return view('posts.index', compact('posts'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('posts.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StorePostRequest $request)
     {
         $post = Post::create([
@@ -47,7 +34,6 @@ class PostController extends Controller
             'image' => $request->image ?? null,
         ]);
 
-        // Yangi postni cache-ga qo‘shamiz
         Cache::forget('all_posts');
         Cache::remember('all_posts', 3600, function () {
             return Post::all();
@@ -56,12 +42,8 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'muvafaqiyatli yaratildi');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::findOrFail($id);
         // dd($post);
         $statistics = PostView::where('post_id', $post->id)
             ->orderBy('viewed_at', 'desc')
@@ -79,24 +61,18 @@ class PostController extends Controller
         $studentViews = PostView::where('post_id', $post->id)
             ->where('viewer_type', 'student')
             ->count();
-        $post = Cache::remember("post_{$id}", 3600, function () use ($id) {
-            return Post::findOrFail($id);
+        $post = Cache::remember("post_{$post->id}", 3600, function () use ($post) {
+            return $post;
         });
 
         return view('posts.show')->with(['post' => $post]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Post $post)
     {
         return view('posts.edit', compact('post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdatePostRequest $request, $id)
     {
         $post = Post::findOrFail($id);
@@ -107,7 +83,6 @@ class PostController extends Controller
             'image' => $request->image ?? null,
         ]);
 
-        // Yangi postni cache-ga qo‘shamiz
         Cache::forget("post_{$id}");
         Cache::forget('all_posts');
         Cache::remember("post_{$id}", 3600, function () use ($id) {
@@ -120,15 +95,11 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'muvafaqiyatli yaratildi');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
         $post->delete();
 
-        // Cache-ni o‘chiramiz
         Cache::forget("post_{$id}");
         Cache::forget('all_posts');
 

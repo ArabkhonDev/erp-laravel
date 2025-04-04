@@ -1,5 +1,4 @@
 <x-app-layout>
-    <!-- component -->
     @foreach ($posts as $post)
         <div class="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl my-2">
             <div class="md:flex">
@@ -16,7 +15,7 @@
                     <div class="mt-4">
                         <button
                             class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 focus:outline-none"><a
-                                href="{{ route('posts.show', ['id', $post->id]) }}">Read
+                                href="{{ route('posts.show',  $post->id) }}">Read
                                 More</a></button>
                     </div>
                 </div>
