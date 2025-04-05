@@ -25,10 +25,21 @@ class CourseController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'teacher_id' => 'required|exists:teachers,id',
+            'duration'=> 'required|min:1',
+            'price'=> 'required|min:1',
         ]);
+        if($request->hasFile('image')){
+            $name = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('course-images', $name);
+        }
 
-        Course::create($request->all());
+        Course::create([
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'duration'=>$request->duration,
+            'price'=>$request->price,
+            'image'=>$path ?? null
+        ]);
 
         return redirect()->route('courses.index')->with('success', 'Course created successfully.');
     }

@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+        <button class="btn btn-primary m-2 p-2 w-[200px] bg-green-500 rounded text-white-400 hover:text-green-100"><a href="{{route('courses.create')}}">Kurs yaratish</a></button>
         <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
             <thead class="bg-gray-50">
                 <tr>

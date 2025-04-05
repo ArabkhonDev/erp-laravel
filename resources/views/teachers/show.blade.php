@@ -1,15 +1,12 @@
 <x-app-layout>
-    <!-- component -->
 <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
     <div class=" flex-col items-center md:flex-row">
-      <!-- Product Image -->
       <div class="md:w-1/3 p-4 relative">
         <div class=" ">
           <img src="#" alt="Teacher" class="w-full h-auto object-cover rounded-lg"/>
         </div>
       </div>
       
-      <!-- Product Details -->
       <div class="md:w-2/3 p-6">
         <h1 class="text-2xl font-bold text-gray-800 mb-2">{{$teacher->name}}</h1>
         <p class="text-sm text-gray-600 mb-4">Manzil: {{$teacher->address}}</p>

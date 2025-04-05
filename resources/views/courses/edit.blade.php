@@ -11,8 +11,10 @@
                 <p class="text-[32px] font-bold text-zinc-950 dark:text-white py-2">Teacher Create</p>
 
                 <div>
-                    <form action="{{ route('teachers.store') }}" method="post" enctype="multipart/form-data"
+                    <form action="{{ route('courses.update') }}" method="post" enctype="multipart/form-data"
                         class="mb-4">
+                        @method('put')
+                        @csrf
                         <div class="grid gap-2">
                             <div class="grid gap-1">
                                 <label class="text-zinc-950 dark:text-white" for="fname">Full name</label>

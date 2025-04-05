@@ -1,8 +1,6 @@
 <x-app-layout>
-    <!-- component -->
 <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
     <div class="flex flex-col items-center md:flex-row">
-      <!-- Product Image -->
       <div class="md:w-1/3 p-4 relative">
         <div class=" ">
           <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/computer/k/8/k/15-fa1226tx-gaming-laptop-hp-original-imah4bjbx8ctzdg6.jpeg" alt="HP Victus Laptop" class="w-full h-auto object-cover rounded-lg"/>
@@ -14,7 +12,6 @@
         </div>
       </div>
       
-      <!-- Product Details -->
       <div class="md:w-2/3 p-6">
         <h1 class="text-2xl font-bold text-gray-800 mb-2">HP Victus Gaming Laptop</h1>
         <p class="text-sm text-gray-600 mb-4">Intel Core i5 12th Gen 12450H - (8 GB/512 GB SSD/Windows 11 Home/4 GB Graphics/NVIDIA GeForce RTX 2050)</p>
@@ -29,7 +26,6 @@
           <li class="flex items-center mb-1"><svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Windows 11 Home</li>
           <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>512 GB SSD</li>
         </ul>
-        
         <div class="flex items-center justify-between mb-4">
           <div>
             <span class="text-3xl font-bold text-gray-900">$899.00</span>

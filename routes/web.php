@@ -32,13 +32,16 @@ Route::prefix('admin')->group(function () {
             'teachers' => TeacherController::class,
             'groups' => GroupController::class,
             'courses' => CourseController::class,
-            'lessons' => LessonController::class,
+           
             'grades' => GradeController::class,
             'payments' => PaymentController::class,
             'rooms' => RoomController::class,
             'floors' => FloorController::class,
             'posts' => PostController::class,
         ]);
+    });
+    Route::prefix('my-groups')->group(function () {
+        Route::resource( 'lessons', LessonController::class,);
     });
 });
 
